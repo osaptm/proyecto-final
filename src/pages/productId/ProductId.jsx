@@ -25,7 +25,7 @@ const ProductId = () => {
        dispatch(getProductsThunk());
        const prod = products.find(prod => prod.id === Number(id)) 
        setProduct(prod);
-    }, []);
+    }, [id]);
 
     const handleVolver = () => {
       navigate('/')
