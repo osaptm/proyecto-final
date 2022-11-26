@@ -1,0 +1,119 @@
+.product-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 50px;
+    justify-items: center;
+    align-items: center;
+  }
+
+
+  .product-info__title {
+    margin-bottom: 20px;
+    text-align: center;
+    grid-column: span 2;
+  }
+  .product-info__description {
+    line-height: 1.5;
+    grid-column: span 2;
+    margin-bottom: 20px;
+  }
+  .card-product__price-container {
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  .card-product__price-label{
+    color: var( --color-subtitle-text);
+  }
+
+  .card-product__price-number{
+    color: var(--color-title-text);
+  }
+
+
+  .product-info__quantity-container {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2A3240;
+  }
+  .product-info__minus,
+  .product-info__plus,
+  .product-info__counter {
+    width: 35px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-info__minus,
+  .product-info__plus{
+    color: #2A3240;
+    text-shadow: 1px 1px 6px #82EF;
+    font-size: 0.8em;
+  }
+
+  /* .product-info__minus,
+  .product-info__plus:hover{
+    text-shadow: 1px 1px 3px #82EF;
+  } */
+
+  .product-info__plus,
+  .product-info__counter {
+    border-left: 1px solid #2A3240;
+  }
+  .product-info__minus,
+  .product-info__plus,
+  .product-info__btn{
+    cursor: pointer;
+  }
+  .product-info__btn {
+    margin-top: 15px;
+    display: block;
+    width: 60%;
+    grid-column: span 2;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color:#2A3240;
+    color: var(--primary-color-white);
+    transition: 300ms ease-out;
+  }
+  
+  .product-info__btn:active{
+    transform: scale(0.99);
+  }
+
+  .product-info__btn:hover{
+    transition: 300ms ease-out;
+    box-shadow: 0px 0px 6px #17181c;
+  }
+
+  @media screen and (min-width: 420px){
+    .product-info__btn {
+      margin-top: 15px;
+      display: block;
+      width: 50%;
+      height: 40px;
+    }
+
+  }
+
+  @media screen and (min-width: 720px){
+
+
+    .product-info__btn {
+      margin-top: 50px;
+      width: 50%;
+      height: 40px;
+      font-size: 1em;
+    }
+  }

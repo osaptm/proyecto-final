@@ -1,0 +1,70 @@
+import React, { useEffect, useState } from 'react'
+import './styles/styleSimilarProduct.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductsThunk } from '../../store/slices/products.slice';
+import { Link } from 'react-router-dom';
+const SimilarProduct = ({product}) => {
+
+    const [filterProducts, setFilterProducts] = useState()
+    const allProducts = useSelector(state => state.products)
+    const dispatch = useDispatch();
+  
+  
+   useEffect(() => {
+    if(allProducts.length !== 0){
+      const filter = allProducts.filter(e => e.category.id === product?.category.id)
+      setFilterProducts(filter)
+    }
+  }, [product])
+
+
+  return (
+    <article className='similar-products'>
+      <h2 className='similar-products__title'>Discover similar items</h2>
+
+        <div className="container-card"> 
+        {
+          
+          filterProducts?.map(ele => {
+            if(ele.title !== product.title){
+              return (         
+                            <article className="card-product" key={ele.id} >
+                              <Link to={`/product/${ele.id}`} className="container-figure">
+                                <img
+                                  src={ele.productImgs[1]}
+                                  alt="img-products"
+                                  className="img-front"
+                                />
+                                <img
+                                  src={ele.productImgs[0]}
+                                  alt="img-products"
+                                  className="img-back"
+                                />
+                              </Link>
+        
+                              <Link to={`/product/${ele.id}`}>
+                                <section className="info-container">
+                                  <h3 className="product-name">{ele.title}</h3>                       
+                                </section>
+                              </Link>                      
+        
+                              <div className="product-price">
+                                  <p className="price-text">Price:</p>
+                                  <p className="price">${ele.price}</p>
+                              </div>
+        
+                              <button  className="card-product-btn">
+                                <i className="fa-solid fa-cart-shopping"></i>
+                              </button>
+                              
+                            </article>
+                    )  
+                }})
+              }    
+        </div>
+
+    </article>
+  )
+}
+
+export default SimilarProduct

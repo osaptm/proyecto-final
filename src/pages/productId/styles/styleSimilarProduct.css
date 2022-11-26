@@ -1,0 +1,30 @@
+.similar-products__title {
+    margin-bottom: 30px;
+  }
+
+  .products-container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    place-items: center;
+    row-gap: 1em;
+  }
+  
+  .product-container__similar {
+    padding: 0;
+  }
+
+  @media screen and (min-width: 620px){
+    .products-container{
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1em;
+    }
+  }
+
+
+  @media screen and (min-width: 720px){
+    .products-container{
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 1em;
+    }
+  }
