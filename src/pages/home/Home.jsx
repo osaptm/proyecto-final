@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { filterProductsThunk, filterSearchThunk, getProductsThunk } from "../../store/slices/products.slice";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import './css/cssHome.css';
@@ -10,6 +10,7 @@ const Home = () => {
   const [inputSearch, setInputSearch] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate ();
   const products = useSelector(state=>state.products);
 
   const getCategorys = () =>{
@@ -19,7 +20,6 @@ const Home = () => {
       setcategorys(res.data.data.categories)
     })
   }
-
 
   const addCartProduct = () => alert("Pendiente")
   useEffect(() => {
@@ -72,7 +72,7 @@ const Home = () => {
           products.map(product=>{
             return (
                     <article className="card-product" key={product.id} >
-                      <Link to={`/product/${product.id}`} className="container-figure">
+                      <div onClick={()=>navigate(`/product/${product.id}`)} className="container-figure">
                         <img
                           src={product.productImgs[1]}
                           alt="img-products"
@@ -83,13 +83,13 @@ const Home = () => {
                           alt="img-products"
                           className="img-back"
                         />
-                      </Link>
+                      </div>
 
-                      <Link to={`/product/${product.id}`}>
+                      <div onClick={()=>navigate(`/product/${product.id}`)} >
                         <section className="info-container">
                           <h3 className="product-name">{product.title}</h3>                       
                         </section>
-                      </Link>                      
+                      </div>                      
 
                       <div className="product-price">
                           <p className="price-text">Price:</p>

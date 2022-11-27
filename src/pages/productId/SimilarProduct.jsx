@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import './styles/styleSimilarProduct.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductsThunk } from '../../store/slices/products.slice';
-import { Link } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import './styles/styleSimilarProduct.css'
+
 const SimilarProduct = ({product}) => {
 
     const [filterProducts, setFilterProducts] = useState()
     const allProducts = useSelector(state => state.products)
     const dispatch = useDispatch();
-  
+    const navigate = useNavigate ();
   
    useEffect(() => {
     if(allProducts.length !== 0){
-      const filter = allProducts.filter(e => e.category.id === product?.category.id)
+      const filter = allProducts.filter(e => (e.category.id === product?.category.id&& product.id !== e.id))
       setFilterProducts(filter)
     }
   }, [product])
@@ -21,15 +21,12 @@ const SimilarProduct = ({product}) => {
   return (
     <article className='similar-products'>
       <h2 className='similar-products__title'>Discover similar items</h2>
-
         <div className="container-card"> 
         {
-          
-          filterProducts?.map(ele => {
-            if(ele.title !== product.title){
-              return (         
+              filterProducts?.map(ele => {           
+                return (         
                             <article className="card-product" key={ele.id} >
-                              <Link to={`/product/${ele.id}`} className="container-figure">
+                              <div onClick={()=>navigate(`/product/${ele.id}`)} className="container-figure">
                                 <img
                                   src={ele.productImgs[1]}
                                   alt="img-products"
@@ -40,13 +37,13 @@ const SimilarProduct = ({product}) => {
                                   alt="img-products"
                                   className="img-back"
                                 />
-                              </Link>
+                              </div>
         
-                              <Link to={`/product/${ele.id}`}>
+                              <div onClick={()=>navigate(`/product/${ele.id}`)}>
                                 <section className="info-container">
                                   <h3 className="product-name">{ele.title}</h3>                       
                                 </section>
-                              </Link>                      
+                              </div>                      
         
                               <div className="product-price">
                                   <p className="price-text">Price:</p>
@@ -59,10 +56,9 @@ const SimilarProduct = ({product}) => {
                               
                             </article>
                     )  
-                }})
-              }    
+                })
+          }    
         </div>
-
     </article>
   )
 }

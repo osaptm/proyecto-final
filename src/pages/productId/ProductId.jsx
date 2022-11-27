@@ -1,41 +1,27 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import './styles/styleProductId.css'
-import { useState } from 'react'
+import React, { useEffect , useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import SliderImgs from './SliderImgs'
 import ProductInfoId from './ProductInfoId'
 import SimilarProduct from './SimilarProduct'
 import { getProductsThunk } from '../../store/slices/products.slice';
 import { useDispatch, useSelector } from 'react-redux';
-const ProductId = () => {
+import './styles/styleProductId.css'
 
-    const [product, setProduct] = useState()
-    
-    const navigate = useNavigate()
-
-    const {id} = useParams()
-    
+const ProductId = () => {  
+    const {id} = useParams() 
+    const navigate = useNavigate()   
     const dispatch = useDispatch();
-
     const products = useSelector(state=>state.products)
-
+    const product =  products.find(prod => prod.id === Number(id)) 
     
-    useEffect(() => {       
-       dispatch(getProductsThunk());
-       const prod = products.find(prod => prod.id === Number(id)) 
-       setProduct(prod);
+    useEffect(() => {  
+      dispatch(getProductsThunk());
     }, [id]);
-
-    const handleVolver = () => {
-      navigate('/')
-    }
-
 
   return (
     <section className='product'>
       <div className='navigate-container'>
-        <p onClick={handleVolver}>Home</p>
+        <p onClick={()=>navigate('/')}>Home</p>
         <span></span>
         <p>{product?.title}</p>
       </div>
