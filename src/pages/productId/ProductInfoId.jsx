@@ -4,9 +4,7 @@ import { useDispatch } from 'react-redux'
 import './styles/styleProductInfo.css'
 
 const ProductInfoId = ({product}) => {
-
     const [counter, setCounter] = useState(1)
-
     const dispatch = useDispatch()
   
     // const addToCart = () => {
@@ -26,15 +24,6 @@ const ProductInfoId = ({product}) => {
     //     .catch(err => console.log(err.data))
     // }
   
-    const minusOne = () => {
-      const minus = counter - 1
-      if(minus >= 1){
-        setCounter(minus)
-      }
-    }
-  
-    const plusOne = () => setCounter(counter + 1)
-
 
   return (
     <article className='product-info'>
@@ -50,9 +39,9 @@ const ProductInfoId = ({product}) => {
       </div>
 
       <div className='product-info__quantity-container'>
-        <div onClick={minusOne} className='product-info__minus'><i className="fa-solid fa-minus"></i></div>
+        <div onClick={()=>{counter<2||setCounter(counter - 1)}}  className='product-info__minus'><i className="fa-solid fa-minus"></i></div>
         <div className='product-info__counter'>{counter}</div>
-        <div onClick={plusOne} className='product-info__plus'><i className="fa-solid fa-plus"></i></div>
+        <div onClick={()=>{setCounter(counter + 1)}} className='product-info__plus'><i className="fa-solid fa-plus"></i></div>
       </div>
 
       <button 
