@@ -20,7 +20,7 @@ const SimilarProduct = ({product}) => {
 
   return (
     <article className='similar-products'>
-      <h2 className='similar-products__title'>Discover similar items</h2>
+      <h2 className='similar-products__title'>Related Products</h2>
         <div className="container-card"> 
         {
               filterProducts?.map(ele => {           

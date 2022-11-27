@@ -13,7 +13,7 @@ const ProductId = () => {
     const dispatch = useDispatch();
     const products = useSelector(state=>state.products)
     const product =  products.find(prod => prod.id === Number(id)) 
-    
+
     useEffect(() => {  
       dispatch(getProductsThunk());
     }, [id]);
@@ -22,7 +22,7 @@ const ProductId = () => {
     <section className='product'>
       <div className='navigate-container'>
         <p onClick={()=>navigate('/')}>Home</p>
-        <span></span>
+        <p>{'->'}</p>
         <p>{product?.title}</p>
       </div>
       

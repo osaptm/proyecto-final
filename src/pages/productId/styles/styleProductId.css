@@ -4,17 +4,12 @@
   }
 
 .navigate-container{
-  padding-top: 5em;
+    padding-top: 0.5em;
     display: flex;
     align-items: center;
     gap: 0.4em;
     transition: 300ms ease-out;
 }
-
-.product-slider-info{
-  padding-top: 2em;
-}
-
 
 .navigate-container p:nth-child(1){
   color: #2A3240;
@@ -50,13 +45,7 @@
   }
 
   .navigate-container{
-    padding-top: 7em;
+    padding-top: 1em;
     padding-left: 5em;
   }
-  
-
-  
-.product-slider-info{
-  padding-top: 1em;
-}
 }
