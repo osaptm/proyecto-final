@@ -7,7 +7,7 @@ import ProductId from "./pages/productId/ProductId";
 import NavBar from "./components/NavBar";
 import LoadingScreen from "./components/LoadingScreen";
 import { useSelector } from "react-redux";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart/Cart";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {

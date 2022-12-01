@@ -1,28 +1,26 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import getConfig from '../../helpers/getConfig'
+import { getCartThunk } from '../../store/slices/cart.slice'
 import './styles/styleProductInfo.css'
 
 const ProductInfoId = ({product}) => {
     const [counter, setCounter] = useState(1)
     const dispatch = useDispatch()
   
-    // const addToCart = () => {
-  
-    //   const URL = 'https://e-commerce-api.academlo.tech/api/v1/cart'
-  
-    //   const addproduct = {
-    //     id: product.id,
-    //     quantity: counter
-    //   }
-  
-    //   axios.post(URL, addproduct, getConfig())
-    //     .then(res => {
-    //       console.log(res.data)
-    //       dispatch(getAllProductsCart())
-    //     })
-    //     .catch(err => console.log(err.data))
-    // }
+    const addToCart = () => {
+      const URL = 'https://e-commerce-api.academlo.tech/api/v1/cart'  
+      const addproduct = {
+        id: product.id,
+        quantity: counter
+      }
+      axios.post(URL, addproduct, getConfig())
+        .then(res => {
+          dispatch(getCartThunk())
+        })
+        .catch(err => console.log(err))
+    }
   
 
   return (
@@ -44,7 +42,7 @@ const ProductInfoId = ({product}) => {
         <div onClick={()=>{setCounter(counter + 1)}} className='product-info__plus'><i className="fa-solid fa-plus"></i></div>
       </div>
 
-      <button 
+      <button onClick={()=>{addToCart()}}
         className='product-info__btn'>
         Agragar al carrito <i className="fa-solid fa-cart-plus"></i>
       </button>

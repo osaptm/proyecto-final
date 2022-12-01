@@ -5,6 +5,7 @@ import { Link, useNavigate  } from "react-router-dom";
 import { filterProductsThunk, filterSearchThunk, getProductsThunk } from "../../store/slices/products.slice";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import './css/cssHome.css';
+import { addToCartThunk } from "../../store/slices/cart.slice";
 const Home = () => {
   const [categorys, setcategorys] = useState([]);
   const [inputSearch, setInputSearch] = useState("");
@@ -21,7 +22,14 @@ const Home = () => {
     })
   }
 
-  const addCartProduct = () => alert("Pendiente")
+  const addCartProduct = (id,quantity) => {
+    const data = {
+      "id": id,
+      "quantity": quantity
+    }; 
+    dispatch(addToCartThunk(data));
+  }
+
   useEffect(() => {
     dispatch(getProductsThunk());
     getCategorys();
@@ -96,7 +104,7 @@ const Home = () => {
                           <p className="price">${product.price}</p>
                       </div>
 
-                      <button onClick={addCartProduct} className="card-product-btn">
+                      <button onClick={()=>addCartProduct(product.id,1)} className="card-product-btn">
                         <i className="fa-solid fa-cart-shopping"></i>
                       </button>
                       
