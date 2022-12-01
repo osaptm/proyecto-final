@@ -8,7 +8,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const token = localStorage.getItem('token')
-    const user = JSON.parse(localStorage.getItem('user')||localStorage.getItem('user'))
+    const user = JSON.parse(localStorage.getItem('user') || localStorage.getItem('user'))
 
     const submit = (data) => {
         axios.post(`https://e-commerce-api.academlo.tech/api/v1/users/login`, data)
@@ -31,12 +31,23 @@ const Login = () => {
         <div className='container'>
             <h1>LOGIN</h1>
 
-            { token? (
+            {token ? (
                 <div className='container'>
-                    <h1>{user?.firstName+' '+user?.lastName}</h1>
+                    <h1>{user?.firstName + ' ' + user?.lastName}</h1>
                     <h2>{user?.email}</h2>
                 </div>
-            ) : (<Form className='mx-auto' onSubmit={handleSubmit(submit)} style={{ maxWidth: '500px' }}>
+            ) : (
+
+                <Form className='mx-auto' onSubmit={handleSubmit(submit)} style={{ maxWidth: '500px' }}>
+                    <div className="form__welcome-data">
+                        <p>Datos de prueba:</p>
+                        <p className="Login-email">
+                            <b>Email:</b> exmilder@gmail.com
+                        </p>
+                        <p className="login-password">
+                            <b>Password:</b> 123456
+                        </p>
+                    </div>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email"
@@ -55,7 +66,7 @@ const Login = () => {
                     <Button variant="primary" type="submit">
                         Login!
                     </Button>
-                </Form>) }
+                </Form>)}
         </div>
     );
 };
